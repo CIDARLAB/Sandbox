@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ananke</title>
+    <script type="text/javascript" src="clotho3API/clotho3API.js"></script>
+
+   
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/q.js/1.0.0/q.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.12.0.css"> 
+    <script src="http://code.jquery.com/qunit/qunit-1.12.0.js"></script> 
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> 
+
+</head>
+
+
+<body>
+	<div>
+	<h1> Create User </h1>
+	
+	<input id="cuUserName" value="username" type="text" disabled>
+	<input id="cuUserNameValue" type="text">
+	<br>
+	<input id="cuPassword" value="Password" type="text" disabled>
+	<input id="cuPasswordValue" type="password">
+	<br>
+	<button id="createUser" onclick="createUser()">Create User </button>
+	
+	<script>
+	function createUser(){
+		var username = document.getElementById("cuUserNameValue").value;
+		var password = document.getElementById("cuPasswordValue").value;
+		Clotho.createUser(username,password).then(function(result){
+			alert(JSON.stringify(result));
+		});
+	}
+	</script>
+	
+	<h1> Login </h1>
+	
+	<input id="lUserName" type="text">
+	<input id="lPassword" type="password">
+	<button id="login" onclick="login()">Login </button>
+	
+	<script>
+	function login(){
+		var username = document.getElementById("lUserName").value;
+		var password = document.getElementById("lPassword").value;
+		Clotho.login(username,password).then(function(result){
+			alert(JSON.stringify(result));
+		});
+	}
+	</script>	
+		
+	
+	<h1> Create </h1>
+	
+	<input id="cName" value="Name" type="text" disabled>
+	<input id="cNameValue" type="text">
+	<br>
+	<input id="cDNA" value="DNA" type="text" disabled>
+	<input id="cDNAValue" type="text">
+	<br>
+	<input id="cSchema" value="Schema" type="text" disabled>
+	<input id="cSchemaValue" type="text">
+	<br>
+	<button id="create" onclick="create()">Create </button>
+	
+	<script>
+	function create(){
+		var name = document.getElementById("cNameValue").value;
+		var dna = document.getElementById("cDNAValue").value;
+		var schema = document.getElementById("cSchemaValue").value;
+		var obj = {};
+		obj["name"] = name;
+		obj["dna"] = dna;
+		obj["schema"] = schema;
+		Clotho.create(obj).then(function(result){
+			alert(JSON.stringify(result));
+		});
+	}
+	</script>	
+	
+		
+		
+	<h1> Get </h1>
+	
+	<input id="gId" value="id" type="text" disabled>
+	<input id="gIdValue" type="text">
+	<button id="query" onclick="get()">Get </button>
+	
+	<script>
+	function get(){
+		var id = document.getElementById("gIdValue").value;
+		Clotho.get(id).then(function(result){
+			alert(JSON.stringify(result));
+		});
+	}
+	</script>
+		
+		
+	<h1> Query </h1>
+	
+	<input id="qkey" type="text">
+	<input id="qValue" type="text">
+	<button id="query" onclick="query()">Query </button>
+	<script>
+	function query(){
+		var key = document.getElementById("qkey").value;
+		var value = document.getElementById("qValue").value;
+		var obj = {};
+		obj[key] = value;
+		Clotho.query(obj).then(function(result){
+			alert(JSON.stringify(result));
+		});
+	}
+	</script>
+		
+	<h1> Update/Set </h1>
+	
+	<input id="sId" value="id" type="text" disabled>
+	<input id="sIdValue" type="text">
+	<br>
+	<input id="skey" type="text" >
+	<input id="sValue" type="text">
+		
+	<button id="query" onclick="set()">Set </button>
+	<script>
+	function set(){
+		var id = document.getElementById("sIdValue").value;
+		var key = document.getElementById("skey").value;
+		var value = document.getElementById("sValue").value;
+		var obj = {};
+		obj[key] = value;
+		obj["id"] = id;
+		Clotho.set(obj).then(function(result){
+			alert(JSON.stringify(result));
+		});
+	}
+	</script>
+		
+	<h1> Delete </h1>
+	<input id="dId" type="text" value="id" disabled>
+	<input id="dIdValue" type="text">
+	<button id="delete" onclick="destroy()">Delete </button>
+	<script>
+	function destroy(){
+		var id = document.getElementById("dIdValue").value;
+		Clotho.destroy(id).then(function(result){
+			alert(JSON.stringify(result));
+		});
+	}
+	</script>
+	
+		
+	</div>
+
+</body>
+</html>
