@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.cidarlab.badgeclient;
+package org.cidarlab.dom;
 
 /**
  *
@@ -11,7 +11,7 @@ package org.cidarlab.badgeclient;
  */
 public class BadgeEndPoints {
     
-    private static final String  SITE = "http://52.39.236.237:8080";    
+    public static final String  SITE = "http://52.39.236.237:8080";    
     public static final String SEP= "/";
     
     //FILE GETS

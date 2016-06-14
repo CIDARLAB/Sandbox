@@ -5,22 +5,27 @@
  */
 package org.cidarlab.badgeclient;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.cidarlab.get.Files;
+import org.cidarlab.get.Lists;
+import org.cidarlab.post.BadgeForm;
+import org.cidarlab.post.IssuerForm;
+import org.cidarlab.post.PercentTaskForm;
+import org.cidarlab.post.PerformanceTaskForm;
+import org.cidarlab.post.RegisterForm;
+import org.cidarlab.post.RepeatTaskForm;
+import org.cidarlab.post.TimeTrialTaskForm;
+import org.cidarlab.post.UniqueTaskForm;
 
 /**
  *
@@ -29,125 +34,80 @@ import org.jsoup.select.Elements;
 public class PingAWS {
 
     public static void main(String[] args) throws IOException, MalformedURLException, UnirestException {
-//        //LOGIN AS ADMIN PLS
-        String targetURL = "http://52.39.236.237:8080/";
-        boolean auth = login(targetURL, "beepboop@gmail.com", "hello");
 
-        if (auth) {
-            //BADGE CREATE
-            String[] params = new String[6];
-            params[0] = "Test Badge";
-            params[1] = "Testing post request for peasantry badge creation";
-            params[2] = "Bomberman.png";
-            params[3] = "Being the best peasant you can be";
-            params[4] = "Tag you're it";
-            params[5] = "ME";
+        //GET FILES
+        InputStream sonic = Files.get("images/Sonic.png");
+        Image img = ImageIO.read(sonic);
 
-            System.out.println(auth);
-
-            //FILE GET
-            InputStream sonic = getFile(targetURL, "images/Sonic.png");
-            Image image = ImageIO.read(sonic);
-
-            JFrame frame = new JFrame("Sonic");
-            JLabel label = new JLabel(new ImageIcon(image));
-            frame.getContentPane().add(label, BorderLayout.CENTER);
-            frame.pack();
-            frame.setVisible(true);
-        }
-    }
-
-    public static boolean login(String targetURL, String email, String password) throws MalformedURLException, IOException, UnirestException {
-        HttpResponse<String> response = Unirest.post(targetURL + "login")
-                .field("email", email)
-                .field("password", password)
-                .asString();
-
-        String rp = response.getBody();
-        Document page = Jsoup.parse(rp);
-
-        Elements hello = page.getElementsByTag("h2");
-        for (Element msg : hello) {
-            String parse = msg.text();
-            if (parse.contains("Welcome back")) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    public static InputStream getFile(String baseURL, String extension) throws UnirestException {
-        HttpResponse<InputStream> response = Unirest.get(baseURL + extension)
-                .header("content-type", "*/*")
-                .asBinary();
-
-        return response.getBody();
-    }
-
-    public static boolean register(String URL, String name, String email, String password) throws UnirestException {
-        if (name.isEmpty() || password.isEmpty()) {
-            return false;
-        }
-        HttpResponse<String> response = Unirest.post(URL + "register")
-                .field("name", name)
-                .field("email", email)
-                .field("password", password)
-                .field("passwordcheck", password)
-                .asString();
-
-        Document doc = Jsoup.parse(response.getBody());
-        Elements ele = doc.getElementsByTag("h2");
-        for (Element wap : ele) {
-
-            if (wap.toString().contains(name)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean createBadge(String targetURL, String name, String description, String image, String criteria, String tags, String issuer) throws UnirestException {
-        HttpResponse<String> response = Unirest.post(targetURL + "admin-badge")
-                .field("name", name)
-                .field("description", description)
-                .field("image", image)
-                .field("criteria", criteria)
-                .field("tags", tags)
-                .field("issuer", issuer)
-                .asString();
-
-        Document doc = Jsoup.parse(response.getBody());
-        Elements ele = doc.getElementsByTag("h2");
-
-        for (Element hehe : ele) {
-            if (hehe.toString().contains("Your badge was successfully created!")) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public static boolean createIssuer(String targetURL, String name, String description, String issuerURL) throws UnirestException
-    {
-        HttpResponse<String> response = Unirest.post(targetURL + "issuer")
-                .field("name", name)
-                .field("description", description)
-                .field("url", issuerURL)
-                .asString();
+        JFrame frame = new JFrame("Sonic");
+        JLabel label = new JLabel(new ImageIcon(img));
+        frame.getContentPane().add(label, BorderLayout.CENTER);
+        frame.pack();
+        frame.setVisible(true);
         
-        Document doc = Jsoup.parse(response.getBody());
-        Elements all = doc.getElementsByTag("p");
+        //GET LISTS
+        String email = "alex@hoopla.com";
+        String password = "asdf";
+        Lists lists = new Lists(email, password);
         
-        for(Element disOne : all)
-        {
-            if(disOne.toString().contains("Your issuer has been created!"))
-            {
-                return true;
-            }
-        }
+        List<String> list1 = lists.getListOfBadges();
+        List<String> list2 = lists.getListOfUsers();
+        List<String> list3 = lists.getListOfImages();
+        List<String> list4 = lists.getListOfIssuers();
+        List<String> list5 = lists.getListOfTasks();
+        List<String> list6 = lists.getListOfApps();
         
-        return false;
+        //POST BADGE
+        String name = "name name";
+        String description = "description";
+        String image = list3.get(0);
+        String criteria = "criteria";
+        String tags = "tags";
+        String issuer = list4.get(0);
+        
+        BadgeForm form1 = new BadgeForm(email, password, name, description, image, criteria, tags, issuer);
+        boolean success1 = form1.post();
+        
+        //POST Issuer
+        String issuerURL = "http://test.com";
+        IssuerForm form2 = new IssuerForm(email, password, name, description, issuerURL);
+        boolean success2 = form2.post();
+        
+        //Post Percent Task Form
+        String badge = list1.get(0);
+        String user = list2.get(0);
+        String app = list6.get(0);
+        String circuit = "circuit";
+        String initialScore = "0";
+        String percentImprovement = "100";
+        PercentTaskForm form3 = new PercentTaskForm(email, password, badge, user, app, circuit, initialScore, percentImprovement);
+        boolean success3 = form3.post();
+        
+        //Post Performance Task Form
+        String targetyield = "targetyield";
+        String cost = "cost";
+        PerformanceTaskForm form4 = new PerformanceTaskForm(email, password, badge, user, app, circuit, targetyield, cost);
+        boolean success4 = form4.post();
+        
+        //Post Register Form
+        boolean success5 = RegisterForm.register("Al", "al@hoopla.com", "asdf");
+        
+        //Post RepeatTaskForm
+        String repetitions = "repetitions";
+        RepeatTaskForm form6 = new RepeatTaskForm(email, password, badge, user, app, circuit, repetitions);
+        boolean success6 = form6.post();
+        
+        //Post Time Trial Task Form
+        String days = "days";
+        String hours = "hours";
+        String minutes = "minutes";
+        String tasknum = "task num";
+        TimeTrialTaskForm form7 = new TimeTrialTaskForm(email, password, badge, user, app, days, hours, minutes, circuit, tasknum);
+        boolean success7 = form7.post();
+        
+        //Post Unique Task Form
+        String unique = "unique";
+        UniqueTaskForm form8 = new UniqueTaskForm(email, password, badge, user, app, unique);  
+        boolean success8 = form8.post();
     }
-
 }
