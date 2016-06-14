@@ -1,6 +1,6 @@
 /*
     Controller for the Counting method. It handles GET requests for / by 
-    returning the view counting. It handles POST requests by changing the count
+    returning the view counting. It handles POST requests for /add and /subtract by changing the count
     and then returning the view counting.
     
 */
