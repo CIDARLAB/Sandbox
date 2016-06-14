@@ -21,7 +21,7 @@ import os
 #Download the directory page
 res = requests.get("http://www.fluorophores.tugraz.at/substance/")
 res.raise_for_status()
-substancesPage = bs4.BeautifulSoup(res.text)
+substancesPage = bs4.BeautifulSoup(res.text, "lxml")
 
 #Saves the list of fp rows in the directory
 fpDir = substancesPage.select('.title')
