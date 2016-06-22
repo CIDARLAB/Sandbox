@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="aboutApp">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Double Dutch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style/custom.css" rel="stylesheet">
+    <link href="style/jumbotron-narrow.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <double-dutch-header></double-dutch-header>
+
+   <div class="container" style = "padding-top:40px;">
+
+     <div class="row">
+  <div class="col-xs-12" style = "border-bottom: 1px solid #cccccc;">
+    <h1 class = "head">What is Double Dutch?</h1>
+    </div>
+</div>
+
+    <div style="margin-left:50px">
+      <br/>
+      <p>Double Dutch is tool for designing combinatorial libraries of biological systems based on designs from response surface methodology (RSM). In practice, it is prohibitive to assemble and test millions of variants to determine how different DNA components affect the behavior of a pathway. RSM, however, provides the means to construct empirical models of system behavior without testing all variants. In RSM, a factorial design is the set of designs that tests how one or more "factors" affect a system of interest when taking on different combinations of quantitative "levels" chosen beforehand.</p>
+
+      <p>In order for RSM to be used in the context of genetic design, the genes and characterized DNA components that make up pathway variants must first be assigned to the factors and levels of a factorial design, respectively. Double Dutch uses heuristic algorithms, such as k-means clustering and simulated annealing, to optimize this assignment process with respect to three concerns, including the match between component parameters and design levels, the number of components repeated within each pathway (related to risk of homologous recombination), and the total number of unique components that must be synthesized to implement the pathway library.</p>
+
+      <!-- <br/><br/>
+      Double Dutch's capabilities include:
+        <ul>
+          <li>
+            Specification of <b>(synthetic) biological components</b> 
+          </li>
+          <li>
+            Support of <b>Data Exchange</b> standards
+          </li>
+          <li>
+            <b>Library Management</b> of design and components 
+          </li>
+          <li>
+            Specification of <b>design constraints ("Rules")</b> on composing components into novel systems
+          </li>
+          <li>
+            <b>Built-In functions</b> to enumerate rule-compliant designs automatically 
+          </li>
+          <li>
+            <b>Control structures</b> and <b>functions</b> for the specification of design synthesis
+          </li>
+        </ul> -->
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+      <img src = "image/workflow.jpg" style = "height: 85%; width:85%; display:block; margin-left: auto; margin-right:auto; padding-top:30px;">
+      </div>
+    </div>
+
+  </div>
+
+  <double-dutch-footer></double-dutch-footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+  <script src="angular/directive/navigation/doubleDutchHeader.js"></script>
+  <script src="angular/directive/navigation/doubleDutchFooter.js"></script>
+  <script src="angular/module/aboutApp.js"></script>
+	
+  </body>
+</html>

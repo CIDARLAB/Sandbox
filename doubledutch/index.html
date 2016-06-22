@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app = "indexApp">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Double Dutch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style/custom.css" rel="stylesheet">
+    <link href="style/jumbotron-narrow.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <double-dutch-header></double-dutch-header>
+
+  <div class="container" style = "padding-top:40px;">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="jumbotron">
+          <img src="image/double_dutch_logo.png" style = "height: 40%; width:40%">
+        
+          <p class="lead">        
+          A Tool for Designing Combinatorial Libraries of Biological Systems Using Response Surface Methodology
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+	<div class="container">
+    	<div class="row">
+	  
+      		<div class="col-xs-12">
+        		<a href="app/pathwayDesigner/pathwayDesigner.html" target="_blank"><img class = "tools" src = "image/biosynthetic_pathways.jpg"></a>
+        		<h4><a href="app/pathwayDesigner/pathwayDesigner.html" target="_blank">Pathway Designer</a></h4>
+        		<p>A tool for designing libraries of biosynthetic pathways</p>
+      		</div>
+
+          <div class="row text-center">
+            <p><b>Stay tuned for more apps!</b></p>
+          </div>
+
+     	</div>
+
+    </div>
+
+    <double-dutch-footer></double-dutch-footer>
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+   <script src="angular/directive/navigation/doubleDutchHeader.js"></script>
+   <script src="angular/directive/navigation/doubleDutchFooter.js"></script>
+   <script src="angular/module/indexApp.js"></script>
+   
+  </body>
+</html>

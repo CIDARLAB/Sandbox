@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="contactApp">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Double Dutch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style/custom.css" rel="stylesheet">
+    <link href="style/jumbotron-narrow.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <double-dutch-header></double-dutch-header>
+
+   <div class="container" style = "padding-top:40px;">
+
+     <div class="row">
+       <div class="col-xs-6">
+         <img src = "image/nic.jpg" style = "height: 200px;display: block;border: 7px solid #ccc;display: block; margin-left: auto; margin-right:auto;">
+         <div class="row">
+           <div class="col-xs-12" style = "text-align:center">
+           <p class = "bod"> Nic Roehner </p>
+           <p class = "bod" style = "margin-top: -10px;"> nicholasroehner@gmail.com </p>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-xs-6">
+          <a href = "http://cidarlab.org/doug-densmore/" target="_blank"><img src = "image/doug.png" style = "height: 200px;display: block; margin-left: auto; margin-right:auto; border: 7px solid #ccc;"></a>
+        <div class="row">
+          <div class="col-xs-12" style = "text-align:center">
+            <a href = "http://cidarlab.org/doug-densmore/" target="_blank"><p class = "bod_link"> Doug Densmore </p></a>
+            <p class = "bod" style = "margin-top: -10px;"> dougd@bu.edu </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4">
+         <img src = "image/eric_young.jpg" style = "height: 200px;display: block;border: 7px solid #ccc;display: block; margin-left: auto; margin-right:auto;">
+         <div class="row">
+           <div class="col-xs-12" style = "text-align:center">
+           <p class = "bod"> Eric Young </p>
+           <p class = "bod" style = "margin-top: -10px;"> yoeric@mit.edu </p>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-xs-4">
+         <img src = "image/ben_gordon.jpg" style = "height: 200px;display: block;border: 7px solid #ccc;display: block; margin-left: auto; margin-right:auto;">
+         <div class="row">
+           <div class="col-xs-12" style = "text-align:center">
+           <p class = "bod"> Ben Gordon </p>
+           <p class = "bod" style = "margin-top: -10px;"> dbg@broadinstitute.org </p>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-xs-4">
+          <a href = "https://be.mit.edu/directory/christopher-a-voigt" target="_blank"><img src = "image/chris_voigt.jpg" style = "height: 200px;display: block; margin-left: auto; margin-right:auto; border: 7px solid #ccc;"></a>
+        <div class="row">
+          <div class="col-xs-12" style = "text-align:center">
+            <a href = "https://be.mit.edu/directory/christopher-a-voigt" target="_blank"><p class = "bod_link"> Chris Voigt </p></a>
+            <p class = "bod" style = "margin-top: -10px;"> cavoigt@gmail.com </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <double-dutch-footer></double-dutch-footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+  <script src="angular/directive/navigation/doubleDutchHeader.js"></script>
+  <script src="angular/directive/navigation/doubleDutchFooter.js"></script>
+  <script src="angular/module/contactApp.js"></script>
+	
+  </body>
+</html>

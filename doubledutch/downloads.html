@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="downloadsApp">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Double Dutch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style/custom.css" rel="stylesheet">
+    <link href="style/jumbotron-narrow.css" rel="stylesheet">
+
+  </head>
+
+  <body ng-controller="downloadsCtrl">
+
+  <double-dutch-header></double-dutch-header>
+
+  <table-library library="tableLibrary"></table-library>
+  <grid-library library="gridLibrary"></grid-library>
+
+  <div class="container" style="padding-top:40px;">          
+    <table class="table">
+      <thead>
+        <tr>
+          <th>DNA Component Library Files</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>grid.csv</td>
+          <td><button type="button" class="btn btn-primary" ng-csv="gridLibrary.getLibraryData()" filename="grid.csv" field-separator=",">Download</button></td>
+        </tr>
+        <tr>
+          <td>table.csv</td>
+          <td><button type="button" class="btn btn-primary" ng-csv="tableLibrary.getLibraryData()" filename="table.csv" field-separator=",">Download</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <double-dutch-footer></double-dutch-footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-sanitize.min.js"></script>
+  <script src="angular/directive/resource/gridLibrary.js"></script>
+  <script src="angular/directive/resource/tableLibrary.js"></script>
+  <script src="angular/directive/navigation/doubleDutchHeader.js"></script>
+  <script src="angular/directive/navigation/doubleDutchFooter.js"></script>
+  <script src="angular/controller/downloadsCtrl.js"></script>
+  <script src="angular/module/downloadsApp.js"></script>
+  <script src="angular/directive/io/ng-csv.min.js"></script>
+
+  </body>
+</html>
