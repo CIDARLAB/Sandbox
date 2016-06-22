@@ -33,5 +33,5 @@ public class BadgeEndPoints {
     public static String ADMIN_AWARDS = SITE + SEP + "admin-awards";
     public static String ADMIN_IMAGES = SITE + SEP + "admin-images";
     public static String ADMIN_TASKS = SITE + SEP + "admin-tasks";
-
+    public static String SUBMIT = SITE + SEP + "submit";
 }
