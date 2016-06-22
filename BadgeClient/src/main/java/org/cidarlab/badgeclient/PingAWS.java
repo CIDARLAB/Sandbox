@@ -109,5 +109,7 @@ public class PingAWS {
         String unique = "unique";
         UniqueTaskForm form8 = new UniqueTaskForm(email, password, badge, user, app, unique);  
         boolean success8 = form8.post();
+        
+        System.out.println("Fin");
     }
 }
