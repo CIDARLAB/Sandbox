@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class CountingController {
+public class MainController {
     
     @RequestMapping(value="/", method=RequestMethod.GET)
     public String countingForm() {
@@ -24,10 +24,11 @@ public class CountingController {
     }
     
     @RequestMapping(value="/connect", method=RequestMethod.GET)
-    public void connect() {
+    public String connect() {
         System.out.println("connect");
         ClothoConnection conn = new ClothoConnection(Args.clothoLocation);
         System.out.println("connectsuccess");
         Clotho clothoObject = new Clotho(conn);
+        return "success";
     }
 }
