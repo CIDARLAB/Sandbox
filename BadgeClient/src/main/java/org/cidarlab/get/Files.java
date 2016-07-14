@@ -10,6 +10,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import java.io.IOException;
 import java.io.InputStream;
+import org.cidarlab.dom.BadgeEndPoints;
 import static org.cidarlab.dom.BadgeEndPoints.SEP;
 import static org.cidarlab.dom.BadgeEndPoints.SITE;
 
@@ -31,6 +32,22 @@ public class Files {
                 .asBinary();
 
         return response.getBody();
+    }
+    
+    public static InputStream getBakedBadge(String username, String badgename) throws UnirestException
+    {
+        String sanitized = username.replace(".","-dot-");
+        sanitized = sanitized.replace("@","-at-");
+        sanitized += badgename.replace(" ","-");
+        
+        System.out.println(BadgeEndPoints.BAKEDBADGES + "/bake" + sanitized + ".png");
+        
+        HttpResponse<InputStream> response = Unirest.get(BadgeEndPoints.BAKEDBADGES + "/bake" + sanitized + ".png")
+                .header("content-type", "*/*")
+                .asBinary();
+        
+        return response.getBody();
+        
     }
 
 }

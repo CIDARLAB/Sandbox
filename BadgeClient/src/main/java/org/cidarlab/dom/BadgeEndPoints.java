@@ -22,6 +22,7 @@ public class BadgeEndPoints {
     public static String IMAGES = SITE + SEP + "images";
     public static String CRITERIA = SITE + SEP + "criteria";
     public static String AWARDEDBADGES = SITE + SEP + "awardedbadges";
+    public static String BAKEDBADGES = SITE + SEP + "bakedawarded";
     
     //MAIN ROUTING FUNCS
     public static String MYPROFILE = SITE + SEP + "myprofile";
@@ -35,4 +36,5 @@ public class BadgeEndPoints {
     public static String ADMIN_TASKS = SITE + SEP + "admin-tasks";
     public static String SUBMIT = SITE + SEP + "submit";
     public static String SEARCH = SITE + SEP + "search";
+    public static String RETR_BADGES = SITE + SEP + "user";
 }

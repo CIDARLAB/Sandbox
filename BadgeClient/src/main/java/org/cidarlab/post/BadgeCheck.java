@@ -17,7 +17,20 @@ import org.json.JSONArray;
  *
  * @author david
  */
-public class SearchByBadge {
+public class BadgeCheck {
+    
+    public static JSONArray getBadges(String username) throws UnirestException{
+        HttpResponse<JsonNode> response = Unirest.post(BadgeEndPoints.RETR_BADGES)
+                .field("username", username)
+                .asJson();
+        
+        JsonNode output = response.getBody();
+        JSONArray badges = output.getArray();
+        
+        System.out.println(badges);
+        
+        return badges;
+    }
     
     public static JSONArray searchByBadge(String badgename) throws UnirestException
     {
