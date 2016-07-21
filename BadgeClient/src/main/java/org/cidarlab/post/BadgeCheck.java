@@ -9,8 +9,9 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import java.util.ArrayList;
+import java.util.List;
 import org.cidarlab.dom.BadgeEndPoints;
-import org.cidarlab.get.Lists;
 import org.json.JSONArray;
 
 /**
@@ -19,29 +20,40 @@ import org.json.JSONArray;
  */
 public class BadgeCheck {
     
-    public static JSONArray getBadges(String username) throws UnirestException{
+    public static List<String> getBadges(String username) throws UnirestException{
         HttpResponse<JsonNode> response = Unirest.post(BadgeEndPoints.RETR_BADGES)
                 .field("username", username)
                 .asJson();
         
-        JsonNode output = response.getBody();
-        JSONArray badges = output.getArray();
+        JSONArray badges = response.getBody().getArray();
         
-        System.out.println(badges);
+        ArrayList<String> badgeList = new ArrayList<>();
         
-        return badges;
+        
+        for(int i = 0; i < badges.length(); i++)
+        {
+                badgeList.add(badges.getJSONObject(i).getString("name"));
+        }
+        
+        return badgeList;
     }
     
-    public static JSONArray searchByBadge(String badgename) throws UnirestException
+    public static List<String> searchByBadge(String badgename) throws UnirestException
     {
         HttpResponse<JsonNode> response = Unirest.post(BadgeEndPoints.SEARCH)
                 .field("badgename", badgename)
                 .asJson();
+
+        JSONArray userArray = response.getBody().getArray();
         
-        JsonNode users = response.getBody();
-        JSONArray userArray = users.getArray();
+        ArrayList<String> userList = new ArrayList<>();
         
-        return userArray;
+        for(int i = 0; i < userArray.length(); i++)
+        {
+            userList.add(userArray.getJSONObject(i).getString("email"));
+        }
+        
+        return userList;
     }
     
 }

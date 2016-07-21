@@ -58,47 +58,35 @@ public class PingAWS {
         String password = "hello";
         Lists lists = new Lists(email, password);
 
-        JSONArray check = BadgeCheck.getBadges(email);
+        List<String> check = BadgeCheck.getBadges(email);
 
-        String badgename;
-        
-        for(int i = 0 ; i < check.length(); i++)
-        {
-            JSONObject obj = check.getJSONObject(i);
-            badgename = obj.getString("name");
-            
-            System.out.println("Searching for users with : " + badgename);
-            
-            
-            JSONArray search = BadgeCheck.searchByBadge(badgename);
-            
-            System.out.println("Owners: ");
-            for(int j = 0; j < search.length(); j++)
-            {
-                JSONObject people = search.getJSONObject(j);
-                System.out.println(people);
-                
-                //Destination file
-                File file = new File("/home/david/Desktop/"+people.getString("email").replace("@", "-at-").replace(".","-dot-") + badgename.replace(" ", "-") + ".png");
-                InputStream bakedbadgeStream = Files.getBakedBadge(people.getString("email"), badgename);
-                
-                OutputStream out = new FileOutputStream(file);
-                int len;
-                byte[] bytes = new byte[1024];
-                
-                while((len = bakedbadgeStream.read(bytes)) > 0)
-                {
-                    out.write(bytes,0,len);
-                }
-                bakedbadgeStream.close();
-                out.close();
+        String badgename = check.get(0);
+
+        System.out.println("Searching for users with : " + badgename);
+
+        List<String> search = BadgeCheck.searchByBadge(badgename);
+
+        System.out.println("Owners: ");
+        for (int j = 0; j < search.size(); j++) {
+            System.out.println(search.get(j));
+
+            //Destination file
+            File file = new File("/home/david/Desktop/" + search.get(j).replace("@", "-at-").replace(".", "-dot-") + badgename.replace(" ", "-") + ".png");
+            InputStream bakedbadgeStream = Files.getBakedBadge(search.get(j), badgename);
+
+            OutputStream out = new FileOutputStream(file);
+            int len;
+            byte[] bytes = new byte[1024];
+
+            while ((len = bakedbadgeStream.read(bytes)) > 0) {
+                out.write(bytes, 0, len);
             }
-            System.out.println("-------------------");
-            
+            bakedbadgeStream.close();
+            out.close();
         }
- 
+        System.out.println("-------------------");
+
         //Gets all general lists from the web form made by Josh. Can and will make direct requests to server in future.
-        
         List<String> list1 = lists.getListOfBadges();
         List<String> list2 = lists.getListOfUsers();
         List<String> list3 = lists.getListOfImages();
