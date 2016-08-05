@@ -1,0 +1,6 @@
+/Users/Alex/CIDAR/tut-spring-security-and-angular-js/oauth2/authserver/src/main/java/st/malike/auth/server/model/User.java
+/Users/Alex/CIDAR/tut-spring-security-and-angular-js/oauth2/authserver/src/main/java/st/malike/auth/server/repository/UserRepository.java
+/Users/Alex/CIDAR/tut-spring-security-and-angular-js/oauth2/authserver/src/main/java/st/malike/auth/server/service/security/UserAuthConfigService.java
+/Users/Alex/CIDAR/tut-spring-security-and-angular-js/oauth2/authserver/src/main/java/st/malike/auth/server/service/security/UserAuthProviderService.java
+/Users/Alex/CIDAR/tut-spring-security-and-angular-js/oauth2/authserver/src/main/java/st/malike/auth/server/service/UserService.java
+/Users/Alex/CIDAR/tut-spring-security-and-angular-js/oauth2/authserver/src/main/java/demo/AuthserverApplication.java
