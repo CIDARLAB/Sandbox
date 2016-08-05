@@ -12,6 +12,8 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import java.io.IOException;
 import org.cidarlab.dom.BadgeEndPoints;
 import org.cidarlab.get.Lists;
+import org.cidarlab.post.BadgeCheck;
+import org.cidarlab.post.TaskUpdate;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,13 +30,9 @@ public class testSearch {
         String badgename = lists.getListOfBadges().get(0);
         System.out.println(badgename);
 
-        HttpResponse<JsonNode> response = Unirest.post(BadgeEndPoints.SITE + "/search")
-                .field("badgename", badgename)
-                .asJson();
-        
-        JsonNode users = response.getBody();
-        JSONArray userArray = users.getArray();
-        System.out.println(userArray.get(0));
+        System.out.println(BadgeCheck.searchByBadge(badgename));
+
+
 
         
     }
