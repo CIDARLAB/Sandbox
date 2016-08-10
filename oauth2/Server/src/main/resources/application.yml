@@ -1,0 +1,29 @@
+security:
+  user:
+    password: password
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      client-id: acme
+      client-secret: acmesecret
+      scope: read,write
+      auto-approve-scopes: '.*'
+
+server:
+  port: 9999
+  contextPath: /uaa
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+
+
+#MONGODB
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: sso-auth-server
